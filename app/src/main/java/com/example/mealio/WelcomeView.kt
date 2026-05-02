@@ -1,23 +1,27 @@
 package com.example.mealio
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.fragment.app.Fragment
 
 class WelcomeView : Fragment(R.layout.activity_welcome) {
-    private var binding : FragmentWelcomeBinding? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentWelcomeBinding.bind(view)
 
-        binding?.apply {
-            login.setOnClickListener{ findNavController().navigate(R.id.loginAction) }
-            create.setOnClickListener{ findNavController().navigate(R.id.createAction) }
+        val loginButton = view.findViewById<Button>(R.id.login)
+        val createButton = view.findViewById<Button>(R.id.create)
+
+        loginButton.setOnClickListener {
+            val intent = Intent(activity, LoginView::class.java)
+            startActivity(intent)
         }
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+        createButton.setOnClickListener {
+            val intent = Intent(activity, CreateAccountView::class.java)
+            startActivity(intent)
+        }
     }
 }
