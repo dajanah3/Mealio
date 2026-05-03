@@ -9,8 +9,8 @@ class Mealio (private val context : Context) {
     var uid : String = ""
     var username : String = ""
     var email : String = ""
-    var recipesPosted : MutableList<Recipe> = mutableListOf<Recipe>()
-    var recipesSaved : MutableList<Recipe> = mutableListOf<Recipe>()
+    var my_recipes : ArrayList<String> = arrayListOf<String>()
+    var fav_recipes : ArrayList<String> = arrayListOf<String>()
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -25,20 +25,9 @@ class Mealio (private val context : Context) {
             db.collection("users").document(uid).get()
                 .addOnSuccessListener { doc ->
                     this.username = doc.getString("username") ?: "Unknown User"
+                    this.my_recipes = doc.get("my_recipes") as ArrayList<String>
+                    this.fav_recipes = doc.get("fav_recipes") as ArrayList<String>
                 }
-
-            fetchRecipes("recipesPosted", recipesPosted)
-            fetchRecipes("recipesSaved", recipesSaved)
         }
-    }
-
-    private fun fetchRecipes(collection : String, list: MutableList<Recipe>) {
-        db.collection("users").document(uid).collection(collection)
-            .get()
-            .addOnSuccessListener { doc ->
-                val recipes = doc.toObjects<Recipe>()
-                list.clear()
-                list.addAll(recipes)
-            }
     }
 }

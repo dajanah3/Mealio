@@ -41,7 +41,9 @@ class CreateAccountView : Fragment(R.layout.activity_create) {
         val userMap = hashMapOf(
             "username" to username,
             "email" to email,
-            "password" to binding?.password?.text.toString() // pass plain text rn, change later
+            "password" to binding?.password?.text.toString(), // pass plain text rn, change later
+            "my_recipes" to arrayListOf<String>(),
+            "fav_recipes" to arrayListOf<String>()
         )
 
         db.collection("users").document(userId).set(userMap)
