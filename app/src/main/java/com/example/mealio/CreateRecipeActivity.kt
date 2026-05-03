@@ -13,6 +13,7 @@ import android.os.Bundle
 
 class CreateRecipeActivity : AppCompatActivity() {
 
+    private lateinit var etTitle: EditText
     private lateinit var etDescription: EditText
     private lateinit var ingredientsContainer: LinearLayout
     private lateinit var btnAddIngredient: Button
@@ -30,6 +31,7 @@ class CreateRecipeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_recipe)
 
         //define views
+        etTitle = findViewById(R.id.etTitle)
         etDescription = findViewById(R.id.etDescription)
         ingredientsContainer = findViewById(R.id.ingredientsContainer)
         btnAddIngredient = findViewById(R.id.btnAddIngredient)
@@ -82,8 +84,9 @@ class CreateRecipeActivity : AppCompatActivity() {
         //setup submit button
         btnSubmit.setOnClickListener {
             if (validateForm()) {
-                buildRecipe()
-                submitRecipe()
+                val map = buildRecipe()
+                submitRecipe(map)
+                finish()
             }
         }
     }
@@ -118,57 +121,66 @@ class CreateRecipeActivity : AppCompatActivity() {
     }
 
     private fun validateForm(): Boolean {
-        // Description
-        if (etDescription.text.isBlank()) {
-            etDescription.error = "Please enter a description"
-            etDescription.requestFocus()
+        if(etTitle.text.isBlank()){
+            Toast.makeText(this, "Please enter a title", Toast.LENGTH_SHORT).show()
             return false
         }
-
-        // Ingredients — at least the first field must be filled
+        if (etDescription.text.isBlank()) {
+            Toast.makeText(this, "Please enter a description", Toast.LENGTH_SHORT).show()
+            return false
+        }
         val firstIngredient = ingredientsContainer.getChildAt(0) as? EditText
         if (firstIngredient == null || firstIngredient.text.isBlank()) {
-            firstIngredient?.error = "Please enter at least one ingredient"
-            firstIngredient?.requestFocus()
+            Toast.makeText(this, "Please enter at least one ingredient", Toast.LENGTH_SHORT).show()
             return false
         }
-
-        // Check all visible ingredient fields are non-empty
         for (i in 0 until ingredientsContainer.childCount) {
             val field = ingredientsContainer.getChildAt(i) as? EditText
             if (field != null && field.text.isBlank()) {
-                field.error = "Please fill in this ingredient or remove it"
-                field.requestFocus()
+                Toast.makeText(this, "Please fill in all ingredient fields", Toast.LENGTH_SHORT).show()
                 return false
             }
         }
-
-        // Instructions — at least the first step must be filled
         val firstStep = instructionsContainer.getChildAt(0) as? EditText
         if (firstStep == null || firstStep.text.isBlank()) {
-            firstStep?.error = "Please enter at least one instruction step"
-            firstStep?.requestFocus()
+            Toast.makeText(this, "Please enter at least one instruction step", Toast.LENGTH_SHORT).show()
             return false
         }
-
-        // Check all visible instruction fields are non-empty
         for (i in 0 until instructionsContainer.childCount) {
             val field = instructionsContainer.getChildAt(i) as? EditText
             if (field != null && field.text.isBlank()) {
-                field.error = "Please fill in this step or remove it"
-                field.requestFocus()
+                Toast.makeText(this, "Please fill in all instruction steps", Toast.LENGTH_SHORT).show()
                 return false
             }
         }
-
         return true
     }
 
-    private fun buildRecipe() {
-
+    private fun buildRecipe(): HashMap<String, Any> {
+        val ingredients = Array(ingredientsContainer.childCount) { i ->
+            val field = ingredientsContainer.getChildAt(i) as EditText
+            field.text.toString().trim()
+        }
+        val instructions = Array(instructionsContainer.childCount) {i ->
+            val field = instructionsContainer.getChildAt(i) as EditText
+            field.text.toString().trim()
+        }
+        val recipe = hashMapOf<String, Any>(
+            "description" to etDescription.text.toString().trim(),
+            "ingredients" to ingredients,
+            "instructions" to instructions
+        )
+        return recipe
     }
 
-    private fun submitRecipe() {
-        Toast.makeText(this, "Recipe submitted!", Toast.LENGTH_SHORT).show()
+    private fun submitRecipe(map: HashMap<String, Any>) {
+        val title = etTitle.text.toString().trim()
+        MainActivity.mealio!!.save_recipe(title, map)
+        val keywords = title.lowercase().split(" ")
+        for (keyword in keywords) {
+            if (keyword.isNotBlank()) {
+                MainActivity.mealio!!.save_keyword(keyword, title)
+            }
+        }
     }
 }

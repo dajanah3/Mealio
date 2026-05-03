@@ -23,12 +23,36 @@
             android:gravity="center"
             android:paddingBottom="20dp" />
 
+        <!-- Title Label -->
+        <TextView
+            android:id="@+id/tvTitleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitle"
+            android:text="Title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="4dp" />
+
+        <!-- Title Input -->
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitleLabel"
+            android:hint="Enter recipe title"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textColorHint="#AAAAAA" />
+
         <!-- Description Label -->
         <TextView
             android:id="@+id/tvDescriptionLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvTitle"
+            android:layout_below="@id/etTitle"
             android:text="Description"
             android:textSize="14sp"
             android:textStyle="bold"

@@ -17,4 +17,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
+
+    companion object{
+        var mealio: Mealio? = null
+    }
 }
