@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.mealio.databinding.ActivityCreateBinding
 import com.example.mealio.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -17,6 +18,7 @@ class LoginView : Fragment(R.layout.activity_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = ActivityLoginBinding.bind(view)
 
         binding?.login?.setOnClickListener {
             val email = binding?.email?.text.toString()
