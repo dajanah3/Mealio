@@ -1,5 +1,6 @@
 package com.example.mealio
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -27,9 +28,10 @@ class CreateAccountView : Fragment(R.layout.activity_create) {
             if (email.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        addUser(username, email)
+                        addUser(username, email) // automatically logs user in so we good
                     } else {
                         Toast.makeText(context, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        (activity as? MainActivity)?.switch(WelcomeView())
                     }
                 }
             }
@@ -52,7 +54,9 @@ class CreateAccountView : Fragment(R.layout.activity_create) {
                 if (user != null) {
                     val appState = Mealio(requireContext(), user)
                     Toast.makeText(context, "Welcome to Mealio!", Toast.LENGTH_SHORT).show()
-                    // THEN IG GOTTA SWITCH TO MAIN SCREEN VIEW HERE (CHARLES)
+                    val intent = Intent(requireContext(), HomePage::class.java)
+                    startActivity(intent)
+                    activity?.finish()
                 }
             }
     }

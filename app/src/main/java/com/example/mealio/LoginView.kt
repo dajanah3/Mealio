@@ -1,5 +1,6 @@
 package com.example.mealio
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -29,9 +30,13 @@ class LoginView : Fragment(R.layout.activity_login) {
                             val appState = Mealio(requireContext(), user)
                             Toast.makeText(context, "Welcome back to Mealio!", Toast.LENGTH_SHORT).show()
                             // THEN IG GOTTA SWITCH TO MAIN SCREEN VIEW HERE (CHARLES)
+                            val intent = Intent(requireContext(), HomePage::class.java)
+                            startActivity(intent)
+                            activity?.finish()
                         }
                     } else {
                         Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
+                        (activity as? MainActivity)?.switch(WelcomeView())
                     }
                 }
             }
