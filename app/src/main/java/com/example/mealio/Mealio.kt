@@ -22,7 +22,10 @@ class Mealio (private val context : Context) {
         if (uid.isNotEmpty()) {
             db.collection("users").document(uid).get()
                 .addOnSuccessListener { doc ->
-                    this.user_info = doc as HashMap<String, Any>
+                    val data = doc.data
+                    if (data != null) {
+                        this.user_info = HashMap(data)
+                    }
                 }
         }
     }

@@ -15,13 +15,17 @@ class WelcomeView : Fragment(R.layout.activity_welcome) {
         val createButton = view.findViewById<Button>(R.id.create)
 
         loginButton.setOnClickListener {
-            val intent = Intent(activity, LoginView::class.java)
-            startActivity(intent)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view_tag, LoginView())
+                .addToBackStack(null)
+                .commit()
         }
 
         createButton.setOnClickListener {
-            val intent = Intent(activity, CreateAccountView::class.java)
-            startActivity(intent)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view_tag, CreateAccountView())
+                .addToBackStack(null)
+                .commit()
         }
     }
 }
