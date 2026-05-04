@@ -20,6 +20,10 @@ class CreateAccountView : Fragment(R.layout.activity_create) {
         super.onViewCreated(view, savedInstanceState)
         binding = ActivityCreateBinding.bind(view)
 
+        binding?.back?.setOnClickListener {
+            (activity as? MainActivity)?.switch(WelcomeView())
+        }
+
         binding?.createAccount?.setOnClickListener {
             val email = binding?.email?.text.toString()
             val password = binding?.password?.text.toString()
