@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/recipe_name"
+        android:text="Recipe Name"
+        android:textSize="32dp"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredients"
+        android:id = "@+id/ingredients_label"
+        android:textSize="25dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Steps"
+        android:id = "@+id/steps_label"
+        android:textSize="25dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="250dp"
+        />
+
+    <TextView
+        android:id="@+id/ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ingredients_label"
+        android:layout_alignLeft="@id/ingredients_label"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:text="text" />
+
+    <TextView
+        android:id="@+id/steps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/steps_label"
+        android:layout_alignLeft="@id/steps_label"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:text="text" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/share"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="650dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:text="Share"
+        />
+
+
+</RelativeLayout>

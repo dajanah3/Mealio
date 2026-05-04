@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Create Recipe"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:paddingBottom="20dp" />
+
+        <!-- Title Label -->
+        <TextView
+            android:id="@+id/tvTitleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitle"
+            android:text="Title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="4dp" />
+
+        <!-- Title Input -->
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitleLabel"
+            android:hint="Enter recipe title"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textColorHint="#AAAAAA" />
+
+        <!-- Description Label -->
+        <TextView
+            android:id="@+id/tvDescriptionLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etTitle"
+            android:text="Description"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="4dp" />
+
+        <!-- Description Input -->
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDescriptionLabel"
+            android:hint="Enter recipe description..."
+            android:minLines="3"
+            android:maxLines="6"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textColorHint="#AAAAAA" />
+
+        <!-- Ingredients Label -->
+        <TextView
+            android:id="@+id/tvIngredientsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etDescription"
+            android:layout_marginTop="20dp"
+            android:text="Ingredients"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="4dp" />
+
+        <!-- Ingredient Fields Container -->
+        <LinearLayout
+            android:id="@+id/ingredientsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvIngredientsLabel"
+            android:orientation="vertical">
+
+            <!-- First ingredient field (always visible) -->
+            <EditText
+                android:id="@+id/etIngredient1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="e.g. 1 Cup Flour"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textColorHint="#AAAAAA" />
+
+        </LinearLayout>
+
+        <!-- Add Ingredient Button -->
+        <Button
+            android:id="@+id/btnAddIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ingredientsContainer"
+            android:layout_marginTop="4dp"
+            android:text="+ Add Ingredient"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/green"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+
+        <!-- Remove Ingredient Button -->
+        <Button
+            android:id="@+id/btnRemoveIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ingredientsContainer"
+            android:layout_toEndOf="@id/btnAddIngredient"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="- Remove"
+            android:textSize="13sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/red"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:visibility="gone" />
+
+        <!-- Instructions Label -->
+        <TextView
+            android:id="@+id/tvInstructionsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnAddIngredient"
+            android:layout_marginTop="20dp"
+            android:text="Instructions"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="4dp" />
+
+        <!-- Instructions Fields Container -->
+        <LinearLayout
+            android:id="@+id/instructionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvInstructionsLabel"
+            android:orientation="vertical">
+
+            <!-- First instruction field (always visible) -->
+            <EditText
+                android:id="@+id/etInstruction1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="e.g. Preheat oven to 350°F"
+                android:minLines="2"
+                android:maxLines="4"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textColorHint="#AAAAAA" />
+
+        </LinearLayout>
+
+        <!-- Add Instruction Button -->
+        <Button
+            android:id="@+id/btnAddInstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/instructionsContainer"
+            android:layout_marginTop="4dp"
+            android:text="+ Add Step"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/green"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+
+        <!-- Remove Instruction Button -->
+        <Button
+            android:id="@+id/btnRemoveInstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/instructionsContainer"
+            android:layout_toEndOf="@id/btnAddInstruction"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="- Remove"
+            android:textSize="13sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/red"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:visibility="gone" />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnAddInstruction"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="16dp"
+            android:text="Submit Recipe"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/red"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp" />
+
+    </RelativeLayout>
+
+</ScrollView>
