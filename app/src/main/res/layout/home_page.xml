@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#FF000F"
+        android:id="@+id/top_bar"
         >
 
         <ImageView
@@ -30,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mealio"
+            android:textSize="32sp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />
@@ -42,9 +45,105 @@
             android:src="@drawable/settings_icon_dark"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:id="@+id/settings"
             />
 
     </RelativeLayout>
 
+    
+
+  
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_below="@id/top_bar"
+        >
+        
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:background="#FF000F"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:id="@+id/lookup"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lookup Recipe"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+            
+        </RelativeLayout>
+            
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:background="#FF000F"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/lookup"
+            android:id="@+id/create"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lookup Recipe"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+            
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:background="#FF000F"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/create"
+            android:id="@+id/favorited"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lookup Recipe"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+            
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:background="#FF000F"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/favorited"
+            android:layout_below="@id/create"
+            android:id="@+id/created"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lookup Recipe"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+            
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
+
