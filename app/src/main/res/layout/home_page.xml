@@ -15,135 +15,173 @@
 
     </-->
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#FF000F"
         android:id="@+id/top_bar"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#F2F2F7">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/food"
             android:layout_alignParentStart="true"
-            />
+            android:src="@drawable/food" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mealio"
-            android:textSize="32sp"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            />
+            android:layout_centerVertical="true"
+            android:letterSpacing="-0.03"
+            android:text="Mealio"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/settings"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="25dp"
-            android:layout_gravity="end"
-            android:src="@drawable/settings_icon_dark"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:id="@+id/settings"
-            />
+            android:layout_gravity="end"
+            android:layout_marginEnd="12.5dp"
+            android:src="@drawable/settings_icon_dark" />
 
     </RelativeLayout>
 
-    
-
-  
 
     <RelativeLayout
-        android:layout_height="match_parent"
+        android:id="@+id/home_page_main_layout"
         android:layout_width="match_parent"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ad_layout"
         android:layout_below="@id/top_bar"
-        >
-        
+        android:background="#FFFFFF">
 
-        <RelativeLayout
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:background="#FF000F"
-            android:orientation="vertical"
-            android:layout_centerVertical="true"
-            android:layout_margin="10dp"
+        <TextView
+            android:id="@+id/welcome_bar"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:text="Welcome, (dynamically put name here in HomePage.kt as well as AdView at the bottom)"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:padding="10dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/lookup"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lookup Recipe"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                />
-            
-        </RelativeLayout>
-            
-        <RelativeLayout
             android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:background="#FF000F"
-            android:orientation="vertical"
+            android:layout_height="100dp"
+            android:layout_below="@id/welcome_bar"
+
+            android:layout_alignParentStart="true"
+
+
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"
-            android:layout_toRightOf="@id/lookup"
+            android:layout_marginStart="40dp"
+
+            android:text="Lookup Recipes"
+            android:textAlignment="textStart"
+            android:textColor="#1C1C1E"
+            android:textSize="16sp"
+            app:backgroundTint="#F2F2F7"
+
+            app:cornerRadius="28dp"
+            app:icon="@drawable/settings_icon_dark"
+            app:iconGravity="start"
+            app:iconTint="@color/black"
+            app:strokeWidth="0dp" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/create"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lookup Recipe"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                />
-        </RelativeLayout>
-            
-
-        <RelativeLayout
             android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:background="#FF000F"
-            android:orientation="vertical"
-            android:layout_centerVertical="true"
-            android:layout_margin="10dp"
-            android:layout_below="@+id/create"
-            android:id="@+id/favorited"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lookup Recipe"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                />
-        </RelativeLayout>
-            
+            android:layout_height="100dp"
+            android:layout_below="@id/welcome_bar"
 
-        <RelativeLayout
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:background="#FF000F"
-            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+
+
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"
-            android:layout_toRightOf="@id/favorited"
+
+
+            android:layout_marginEnd="40dp"
+            android:text="Create Recipes"
+            android:textColor="#1C1C1E"
+
+            android:textSize="16sp"
+            app:backgroundTint="#F2F2F7"
+            app:cornerRadius="28dp"
+            app:elevation="0dp"
+            app:icon="@drawable/settings_icon_dark"
+            app:iconGravity="end"
+            app:iconTint="@color/black"
+            app:strokeWidth="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/favorite"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lookup"
+            android:layout_marginStart="40dp"
+            android:layout_marginVertical="50dp"
+
+            android:layout_marginTop="12dp"
+            android:text="View Favorited"
+            android:textAlignment="textStart"
+            android:textColor="#1C1C1E"
+            android:textSize="16sp"
+            app:backgroundTint="#F2F2F7"
+            app:cornerRadius="28dp"
+            app:elevation="0dp"
+            app:icon="@drawable/settings_icon_dark"
+            app:iconGravity="start"
+            app:iconTint="@color/black"
+            app:strokeWidth="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mine"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+
+
+            android:layout_centerHorizontal="true"
             android:layout_below="@id/create"
-            android:id="@+id/created"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lookup Recipe"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                />
-        </RelativeLayout>
-            
+            android:layout_marginStart="40dp"
+            android:layout_marginVertical="50dp"
+
+            android:layout_marginEnd="40dp"
+            android:text="View Created"
+            android:textAlignment="textStart"
+
+            android:textColor="#1C1C1E"
+            android:textSize="16sp"
+            app:backgroundTint="#F2F2F7"
+
+            app:cornerRadius="28dp"
+            app:elevation="0dp"
+            app:icon="@drawable/settings_icon_dark"
+            app:iconGravity="end"
+            app:iconTint="@color/black"
+            app:strokeWidth="0dp" />
 
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ad_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+    </LinearLayout>
 
 </RelativeLayout>
 
