@@ -6,19 +6,24 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class DisplayRecipeActivity : AppCompatActivity() {
-    private var recipe_name = findViewById<TextView>(R.id.recipe_name)
-    private var ingredients = findViewById<TextView>(R.id.ingredients)
-    private var steps = findViewById<TextView>(R.id.steps)
-
-    private var share = findViewById<Button>(R.id.share)
-    private var back = findViewById<Button>(R.id.back)
+    private lateinit var recipe_name : TextView
+    private lateinit var ingredients : TextView
+    private lateinit var steps : TextView
+    private lateinit var share : Button
+    private lateinit var back : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display)
+        recipe_name = findViewById<TextView>(R.id.recipe_name)
+        ingredients = findViewById<TextView>(R.id.ingredients)
+        steps = findViewById<TextView>(R.id.steps)
+
+        share = findViewById<Button>(R.id.share)
+        back = findViewById<Button>(R.id.back)
+
+        back.setOnClickListener { finish() }
 
     }
-
-
 
 }

@@ -37,7 +37,8 @@
         </activity>
         <activity android:name=".HomePage" />
         <activity android:name=".CreateRecipeActivity" />
-
+        <activity android:name=".DisplayAllActivity" />
+        <activity android:name=".DisplayRecipeActivity" />
 
     </application>
 

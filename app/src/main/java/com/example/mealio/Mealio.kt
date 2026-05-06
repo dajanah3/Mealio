@@ -17,11 +17,14 @@ class Mealio (private val context : Context) {
     var user_info : HashMap<String, Any>? = null
 
     private val db = FirebaseFirestore.getInstance()
+    private var started : Boolean = false
 
     constructor(context: Context, user: FirebaseUser) : this(context) {
         this.uid=  user.uid
 //        this.email = user.email ?: "No email"
+        started = false
         fetchUserData()
+
     }
 
     private fun fetchUserData() {
@@ -32,8 +35,11 @@ class Mealio (private val context : Context) {
                     if (data != null) {
                         this.user_info = HashMap(data)
                         Log.w("MainActivity", "user_info loaded and not null")
-                        val intent = Intent(context, HomePage::class.java)
-                        context.startActivity(intent)
+                        if (!started) {
+                            started = true
+                            val intent = Intent(context, HomePage::class.java)
+                            context.startActivity(intent)
+                        }
                     }
                 }
         }
@@ -46,23 +52,13 @@ class Mealio (private val context : Context) {
         Log.w("MainActivity", "recipe set")
         db.collection("users").document(uid)
             .update("my_recipes", FieldValue.arrayUnion(key))
+        fetchUserData()
     }
 
-    fun get_all_recipes() : List<String> {
-        var keys = listOf<String>()
-        db.collection("recipes")
-            .get()
-            .addOnSuccessListener { snapshot ->
-                keys = snapshot.documents.map { it.id }
-                Log.d("MainActivity", "Recipe keys: $keys")
-            }
-            .addOnFailureListener { e ->
-                Log.e("MainActivity", "Error fetching keys", e)
-            }
-        return keys
+    fun get_user_recipes() : ArrayList<String> {
+        val lst : ArrayList<String> = user_info!!["my_recipes"] as ArrayList<String>
+        return lst
     }
-
-
 
     fun save_keyword(keyword: String, recipe_title: String) {
         Log.w("MainActivity", "save_keyword start")
