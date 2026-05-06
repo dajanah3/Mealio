@@ -1,5 +1,6 @@
 package com.example.mealio
 
+import android.R
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -46,6 +47,22 @@ class Mealio (private val context : Context) {
         db.collection("users").document(uid)
             .update("my_recipes", FieldValue.arrayUnion(key))
     }
+
+    fun get_all_recipes() : List<String> {
+        var keys = listOf<String>()
+        db.collection("recipes")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                keys = snapshot.documents.map { it.id }
+                Log.d("MainActivity", "Recipe keys: $keys")
+            }
+            .addOnFailureListener { e ->
+                Log.e("MainActivity", "Error fetching keys", e)
+            }
+        return keys
+    }
+
+
 
     fun save_keyword(keyword: String, recipe_title: String) {
         Log.w("MainActivity", "save_keyword start")

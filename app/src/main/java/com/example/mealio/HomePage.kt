@@ -71,6 +71,13 @@ class HomePage : AppCompatActivity() {
             startActivity(intent)
         }
 
+        createdButton.setOnClickListener {
+            val keys = MainActivity.mealio!!.get_all_recipes()
+            val intent : Intent = Intent(this, DisplayAllActivity::class.java)
+            intent.putStringArrayListExtra("recipe_keys", ArrayList(keys))
+            startActivity(intent)
+        }
+
 
 
     }
