@@ -69,6 +69,11 @@ class Mealio (private val context : Context) {
         return lst
     }
 
+    fun get_fav_recipes() : ArrayList<String> {
+        val lst : ArrayList<String> = user_info!!["fav_recipes"] as ArrayList<String>
+        return lst
+    }
+
     fun save_keyword(keyword: String, recipe_title: String) {
         Log.w("MainActivity", "save_keyword start")
         val docRef = db.collection("keywords").document(keyword)

@@ -78,7 +78,12 @@ class HomePage : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        favedButton.setOnClickListener {
+            val keys = MainActivity.mealio!!.get_fav_recipes()
+            val intent : Intent = Intent(this, DisplayAllActivity::class.java)
+            intent.putStringArrayListExtra("recipe_keys", keys)
+            startActivity(intent)
+        }
 
     }
 
