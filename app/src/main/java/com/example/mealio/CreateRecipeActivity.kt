@@ -185,7 +185,7 @@ class CreateRecipeActivity : AppCompatActivity() {
 
     private fun submitRecipe(map: HashMap<String, Any>) {
         val title = etTitle.text.toString().trim()
-        MainActivity.mealio!!.save_recipe(title, map)
+        MainActivity.mealio!!.save_recipe(title, map, "my_recipes")
         Log.w("MainActivity", "save_recipe ran")
         val keywords = title.lowercase().split(" ")
         for (keyword in keywords) {

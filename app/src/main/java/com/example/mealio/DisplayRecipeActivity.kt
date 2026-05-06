@@ -12,6 +12,7 @@ class DisplayRecipeActivity : AppCompatActivity() {
     private lateinit var steps : TextView
     private lateinit var share : Button
     private lateinit var back : ImageButton
+    private lateinit var favorite : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,9 +23,9 @@ class DisplayRecipeActivity : AppCompatActivity() {
 
         share = findViewById<Button>(R.id.share)
         back = findViewById<ImageButton>(R.id.back)
+        favorite = findViewById<Button>(R.id.favorite)
 
         back.setOnClickListener { finish() }
-
+        favorite.setOnClickListener { MainActivity.mealio!!.favorite_recipe(recipe_name.text.toString()) }
     }
-
 }
