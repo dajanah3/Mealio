@@ -107,13 +107,12 @@ class CreateRecipeActivity : AppCompatActivity() {
     private fun createInputField(context: Context, hint: String, multiLine: Boolean): EditText {
         return EditText(context).apply {
             this.hint = hint
-            textSize = 14f
-            setPadding(
-                (12 * resources.displayMetrics.density).toInt(),
-                (12 * resources.displayMetrics.density).toInt(),
-                (12 * resources.displayMetrics.density).toInt(),
-                (12 * resources.displayMetrics.density).toInt()
-            )
+            textSize = 15f
+            setTextColor(0xFF1C1C1E.toInt())
+            setHintTextColor(0xFF8E8E93.toInt())
+            background = androidx.core.content.ContextCompat.getDrawable(context, R.drawable.bg_input_field)
+            val pad = (14 * resources.displayMetrics.density).toInt()
+            setPadding(pad, pad, pad, pad)
             if (multiLine) {
                 minLines = 2
                 maxLines = 4
@@ -126,7 +125,6 @@ class CreateRecipeActivity : AppCompatActivity() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply {
-                topMargin = (8 * resources.displayMetrics.density).toInt()
                 bottomMargin = (8 * resources.displayMetrics.density).toInt()
             }
         }

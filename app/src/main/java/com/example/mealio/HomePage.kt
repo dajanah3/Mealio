@@ -13,8 +13,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.delay
+import kotlin.concurrent.thread
 
 class HomePage : AppCompatActivity() {
     private lateinit var adView : AdView
@@ -35,21 +37,24 @@ class HomePage : AppCompatActivity() {
         var adUnitId : String = "ca-app-pub-3940256099942544/6300978111"
         adView.adUnitId = adUnitId
 
-        var builder : AdRequest.Builder = AdRequest.Builder()
-        var request : AdRequest = builder.build()
-
         var adLinearLayout : LinearLayout = findViewById<LinearLayout>(R.id.ad_layout)
         adLinearLayout.addView(adView)
 
-        adView.loadAd(request)
+        thread(name = "MobileAdsInit") {
+            MobileAds.initialize(this) {
+                runOnUiThread { adView.loadAd(AdRequest.Builder().build()) }
+            }
+        }
 
         // Change welcome message
         val welcomeTV : TextView = findViewById<TextView>(R.id.welcome_bar)
+        val welcomeSubtitle : TextView = findViewById<TextView>(R.id.welcome_subtitle)
 
         Log.w("MainActivity","user_info: ${MainActivity.mealio!!.user_info}")
 
         val username : String = MainActivity.mealio!!.user_info!!["username"] as String
-        welcomeTV.text = "Welcome back, $username!\nWhat's on the menu today?"
+        welcomeTV.text = "Welcome back, $username"
+        welcomeSubtitle.text = "What's on the menu today?"
 
         // Assign components
         findButton = findViewById<MaterialButton>(R.id.lookup)
