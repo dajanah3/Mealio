@@ -14,11 +14,14 @@
         Banner ad on the bottom
 
     </-->
+
+
+
     <RelativeLayout
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="#F2F2F7">
+        android:background="#FFFFFF">
 
         <ImageView
             android:layout_width="100dp"
@@ -58,6 +61,13 @@
         android:layout_below="@id/top_bar"
         android:background="#FFFFFF">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#F2F2F7"
+
+            />
+
         <TextView
             android:id="@+id/welcome_bar"
             android:layout_width="match_parent"
@@ -66,13 +76,14 @@
             android:text="Welcome, (dynamically put name here in HomePage.kt as well as AdView at the bottom)"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:layout_marginTop="10dp"
             android:padding="10dp"
             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/lookup"
             android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:layout_below="@id/welcome_bar"
 
             android:layout_alignParentStart="true"
@@ -82,22 +93,22 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="40dp"
 
-            android:text="Lookup Recipes"
+            android:text="Find a Recipe"
             android:textAlignment="textStart"
             android:textColor="#1C1C1E"
             android:textSize="16sp"
             app:backgroundTint="#F2F2F7"
 
             app:cornerRadius="28dp"
-            app:icon="@drawable/settings_icon_dark"
+            app:icon="@drawable/find"
             app:iconGravity="start"
-            app:iconTint="@color/black"
+            app:iconTint="#575757"
             app:strokeWidth="0dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create"
             android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:layout_below="@id/welcome_bar"
 
             android:layout_alignParentEnd="true"
@@ -108,22 +119,23 @@
 
 
             android:layout_marginEnd="40dp"
-            android:text="Create Recipes"
+            android:text="Create a Recipe"
             android:textColor="#1C1C1E"
 
+            android:textAlignment="textEnd"
             android:textSize="16sp"
             app:backgroundTint="#F2F2F7"
             app:cornerRadius="28dp"
             app:elevation="0dp"
-            app:icon="@drawable/settings_icon_dark"
+            app:icon="@drawable/create"
             app:iconGravity="end"
-            app:iconTint="@color/black"
+            app:iconTint="#575757"
             app:strokeWidth="0dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/favorite"
             android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:layout_alignParentStart="true"
 
             android:layout_centerHorizontal="true"
@@ -139,15 +151,15 @@
             app:backgroundTint="#F2F2F7"
             app:cornerRadius="28dp"
             app:elevation="0dp"
-            app:icon="@drawable/settings_icon_dark"
+            app:icon="@drawable/bookmark_dark"
             app:iconGravity="start"
-            app:iconTint="@color/black"
+            app:iconTint="#575757"
             app:strokeWidth="0dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mine"
             android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             android:layout_alignParentEnd="true"
 
 
@@ -158,7 +170,7 @@
 
             android:layout_marginEnd="40dp"
             android:text="View Created"
-            android:textAlignment="textStart"
+            android:textAlignment="textEnd"
 
             android:textColor="#1C1C1E"
             android:textSize="16sp"
@@ -166,9 +178,9 @@
 
             app:cornerRadius="28dp"
             app:elevation="0dp"
-            app:icon="@drawable/settings_icon_dark"
+            app:icon="@drawable/created"
             app:iconGravity="end"
-            app:iconTint="@color/black"
+            app:iconTint="#575757"
             app:strokeWidth="0dp" />
 
 

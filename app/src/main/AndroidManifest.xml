@@ -35,9 +35,9 @@
         <activity android:name="com.google.android.gms.ads.AdActivity">
 
         </activity>
-        <activity
-            android:name=".HomePage"
-            />
+        <activity android:name=".HomePage" />
+        <activity android:name=".CreateRecipeActivity" />
+
 
     </application>
 

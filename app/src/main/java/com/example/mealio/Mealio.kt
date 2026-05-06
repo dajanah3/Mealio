@@ -1,14 +1,19 @@
 package com.example.mealio
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObjects
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class Mealio (private val context : Context) {
     var uid : String = ""
-    lateinit var user_info : HashMap<String, Any>
+    var user_info : HashMap<String, Any>? = null
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -25,6 +30,9 @@ class Mealio (private val context : Context) {
                     val data = doc.data
                     if (data != null) {
                         this.user_info = HashMap(data)
+                        Log.w("MainActivity", "user_info loaded and not null")
+                        val intent = Intent(context, HomePage::class.java)
+                        context.startActivity(intent)
                     }
                 }
         }

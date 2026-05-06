@@ -13,7 +13,6 @@ class LoginView : Fragment(R.layout.activity_login) {
 
     private var binding: ActivityLoginBinding? = null
     private val auth = FirebaseAuth.getInstance()
-    private lateinit var mealio : Mealio
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,9 +34,13 @@ class LoginView : Fragment(R.layout.activity_login) {
                             val appState = Mealio(requireContext(), user)
                             Toast.makeText(context, "Welcome back to Mealio!", Toast.LENGTH_SHORT).show()
                             // THEN IG GOTTA SWITCH TO MAIN SCREEN VIEW HERE (CHARLES)
-                            val intent = Intent(requireContext(), HomePage::class.java)
-                            startActivity(intent)
-                            activity?.finish()
+
+                            MainActivity.mealio = appState
+
+//
+//                            val intent = Intent(requireContext(), HomePage::class.java)
+//                            startActivity(intent)
+                            //activity?.finish()
                         }
                     } else {
                         Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
