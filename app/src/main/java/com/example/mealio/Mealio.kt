@@ -40,16 +40,19 @@ class Mealio (private val context : Context) {
 
     fun save_recipe(name: String, recipe: HashMap<String, Any>) {
         val key = "$name : $uid"
-
+        Log.w("MainActivity", "save_recipe start")
         db.collection("recipes").document(key).set(recipe)
-
+        Log.w("MainActivity", "recipe set")
         db.collection("users").document(uid)
             .update("my_recipes", FieldValue.arrayUnion(key))
     }
 
     fun save_keyword(keyword: String, recipe_title: String) {
+        Log.w("MainActivity", "save_keyword start")
         val docRef = db.collection("keywords").document(keyword)
+        Log.w("MainActivity", "docRef assigned")
         docRef.get().addOnSuccessListener { document ->
+            Log.w("MainActivity", "docRef on success")
             if (document.exists()) {
                 // Keyword exists, retrieve the list and append
                 val recipes = document.get("recipes") as? ArrayList<String> ?: arrayListOf()

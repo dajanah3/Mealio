@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 class CreateRecipeActivity : AppCompatActivity() {
 
@@ -83,9 +84,13 @@ class CreateRecipeActivity : AppCompatActivity() {
 
         //setup submit button
         btnSubmit.setOnClickListener {
+            Log.w("MainActivity", "recipe submit button clicked")
             if (validateForm()) {
+                Log.w("MainActivity", "recipe validated")
                 val map = buildRecipe()
+                Log.w("MainActivity", "recipe built")
                 submitRecipe(map)
+                Log.w("MainActivity", "recipe submit")
                 finish()
             }
         }
@@ -157,11 +162,11 @@ class CreateRecipeActivity : AppCompatActivity() {
     }
 
     private fun buildRecipe(): HashMap<String, Any> {
-        val ingredients = Array(ingredientsContainer.childCount) { i ->
+        val ingredients = List(ingredientsContainer.childCount) { i ->
             val field = ingredientsContainer.getChildAt(i) as EditText
             field.text.toString().trim()
         }
-        val instructions = Array(instructionsContainer.childCount) {i ->
+        val instructions = List(instructionsContainer.childCount) {i ->
             val field = instructionsContainer.getChildAt(i) as EditText
             field.text.toString().trim()
         }
@@ -176,6 +181,7 @@ class CreateRecipeActivity : AppCompatActivity() {
     private fun submitRecipe(map: HashMap<String, Any>) {
         val title = etTitle.text.toString().trim()
         MainActivity.mealio!!.save_recipe(title, map)
+        Log.w("MainActivity", "save_recipe ran")
         val keywords = title.lowercase().split(" ")
         for (keyword in keywords) {
             if (keyword.isNotBlank()) {
