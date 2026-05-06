@@ -1,76 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/recipe_name"
-        android:text="Recipe Name"
-        android:textSize="32dp"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ingredients"
-        android:id = "@+id/ingredients_label"
-        android:textSize="25dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="20dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Steps"
-        android:id = "@+id/steps_label"
-        android:textSize="25dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="250dp"
-        />
-
-    <TextView
-        android:id="@+id/ingredients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ingredients_label"
-        android:layout_alignLeft="@id/ingredients_label"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
-        android:text="text" />
-
-    <TextView
-        android:id="@+id/steps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/steps_label"
-        android:layout_alignLeft="@id/steps_label"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
-        android:text="text" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/share"
-        android:layout_marginTop="650dp"
-        android:layout_marginLeft="100dp"
-        android:text="Share"
-        />
-
-    <Button
+    <ImageButton
         android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/share"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="650dp"
-        android:text="Back"
-        android:backgroundTint="#808080"/>
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="#1C1C1E"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="32dp">
+
+            <TextView
+                android:id="@+id/recipe_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Recipe Name"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1E"
+                android:letterSpacing="-0.02" />
+
+            <TextView
+                android:id="@+id/ingredients_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="Ingredients"
+                android:textAllCaps="true"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1E"
+                android:letterSpacing="0.05" />
+
+            <TextView
+                android:id="@+id/ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_input_field"
+                android:padding="14dp"
+                android:text=""
+                android:textColor="#1C1C1E"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp" />
+
+            <TextView
+                android:id="@+id/steps_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Steps"
+                android:textAllCaps="true"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1E"
+                android:letterSpacing="0.05" />
+
+            <TextView
+                android:id="@+id/steps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_input_field"
+                android:padding="14dp"
+                android:text=""
+                android:textColor="#1C1C1E"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/share"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="36dp"
+                android:text="Share"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#1C1C1E"
+                app:cornerRadius="28dp"
+                app:elevation="0dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -2,44 +2,71 @@ package com.example.mealio
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.util.TypedValue
+import android.view.Gravity
+import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.ScrollView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.api.DistributionOrBuilder
+import com.google.android.material.button.MaterialButton
 
 class DisplayAllActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val scrollView = ScrollView(this)
-        val layout = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(32, 32, 32, 32)
+        setContentView(R.layout.activity_display_all)
+
+        val back = findViewById<ImageButton>(R.id.back)
+        val list = findViewById<LinearLayout>(R.id.recipe_list)
+        val empty = findViewById<TextView>(R.id.empty_state)
+
+        back.setOnClickListener { finish() }
+
+        val recipes = intent.getStringArrayListExtra("recipe_keys") ?: arrayListOf()
+
+        if (recipes.isEmpty()) {
+            empty.visibility = TextView.VISIBLE
+            return
         }
 
-        val recipes = intent.getStringArrayListExtra("recipe_keys") ?: return
+        val itemHeight = dp(64)
+        val itemMargin = dp(10)
+        val sidePadding = dp(18)
 
-        for(recipe in recipes){
-            val button = Button(this)
-            button.tag = recipe
-            button.text = recipe.substringBefore(":")
+        for (recipe in recipes) {
+            val button = MaterialButton(this).apply {
+                tag = recipe
+                text = recipe.substringBefore(":")
+                isAllCaps = false
+                gravity = Gravity.CENTER_VERTICAL or Gravity.START
+                setTextColor(0xFF1C1C1E.toInt())
+                setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+                setPadding(sidePadding, 0, sidePadding, 0)
+                insetTop = 0
+                insetBottom = 0
+                cornerRadius = dp(18)
+                strokeWidth = 0
+                elevation = 0f
+                backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFF2F2F7.toInt())
 
-            button.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    itemHeight
+                )
+                params.bottomMargin = itemMargin
+                layoutParams = params
 
-            button.setOnClickListener {
-                val intent = Intent(this, DisplayRecipeActivity::class.java)
-                intent.putExtra("recipe", recipe)
-                startActivity(intent)
+                setOnClickListener {
+                    val intent = Intent(this@DisplayAllActivity, DisplayRecipeActivity::class.java)
+                    intent.putExtra("recipe", recipe)
+                    startActivity(intent)
+                }
             }
 
-            layout.addView(button)
+            list.addView(button)
         }
-
-        scrollView.addView(layout)
-        setContentView(scrollView)
     }
+
+    private fun dp(value: Int): Int =
+        (value * resources.displayMetrics.density).toInt()
 }

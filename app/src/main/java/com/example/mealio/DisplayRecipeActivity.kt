@@ -2,6 +2,7 @@ package com.example.mealio
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -10,7 +11,7 @@ class DisplayRecipeActivity : AppCompatActivity() {
     private lateinit var ingredients : TextView
     private lateinit var steps : TextView
     private lateinit var share : Button
-    private lateinit var back : Button
+    private lateinit var back : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class DisplayRecipeActivity : AppCompatActivity() {
         steps = findViewById<TextView>(R.id.steps)
 
         share = findViewById<Button>(R.id.share)
-        back = findViewById<Button>(R.id.back)
+        back = findViewById<ImageButton>(R.id.back)
 
         back.setOnClickListener { finish() }
 
