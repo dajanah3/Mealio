@@ -11,9 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 
 class CreateRecipeActivity : AppCompatActivity() {
-
+    private lateinit var btnBack: ImageButton
     private lateinit var etTitle: EditText
     private lateinit var etDescription: EditText
     private lateinit var ingredientsContainer: LinearLayout
@@ -32,6 +33,7 @@ class CreateRecipeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_recipe)
 
         //define views
+        btnBack = findViewById(R.id.create_back)
         etTitle = findViewById(R.id.etTitle)
         etDescription = findViewById(R.id.etDescription)
         ingredientsContainer = findViewById(R.id.ingredientsContainer)
@@ -41,6 +43,11 @@ class CreateRecipeActivity : AppCompatActivity() {
         btnSubmit = findViewById(R.id.btnSubmit)
         btnRemoveIngredient = findViewById(R.id.btnRemoveIngredient)
         btnRemoveInstruction = findViewById(R.id.btnRemoveInstruction)
+
+        // Cancel
+        btnBack.setOnClickListener {
+            finish()
+        }
 
         // Add ingredient
         btnAddIngredient.setOnClickListener {

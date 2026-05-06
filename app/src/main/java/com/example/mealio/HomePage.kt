@@ -45,24 +45,28 @@ class HomePage : AppCompatActivity() {
 
         // Change welcome message
         val welcomeTV : TextView = findViewById<TextView>(R.id.welcome_bar)
-        welcomeTV.text = "Loading..."
-        Log.w("MainActivity", "probably loaded")
 
         Log.w("MainActivity","user_info: ${MainActivity.mealio!!.user_info}")
 
         val username : String = MainActivity.mealio!!.user_info!!["username"] as String
         welcomeTV.text = "Welcome back, $username!\nWhat's on the menu today?"
 
-        // Button on-click listeners
+        // Assign components
         findButton = findViewById<MaterialButton>(R.id.lookup)
         createButton = findViewById<MaterialButton>(R.id.create)
         favedButton = findViewById<MaterialButton>(R.id.favorite)
         createdButton = findViewById<MaterialButton>(R.id.mine)
 
+        // Recipe lookup activity
+
+
+        // Recipe creation activity
         createButton.setOnClickListener { view ->
             val intent : Intent = Intent(this, CreateRecipeActivity::class.java)
             startActivity(intent)
         }
+
+
 
     }
 

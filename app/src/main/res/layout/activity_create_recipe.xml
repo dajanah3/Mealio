@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FAFAFA"
     android:fillViewport="true">
 
@@ -10,18 +11,30 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/create_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="-7dp"
+            android:layout_marginLeft="-16dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#1C1C1E"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back" />
+
         <!-- Title -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_alignParentTop="true"
             android:text="Create Recipe"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:gravity="center"
-            android:paddingBottom="20dp" />
+            android:gravity="top|center"
+            />
 
         <!-- Title Label -->
         <TextView
