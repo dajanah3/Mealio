@@ -1,3 +1,9 @@
+Participation:
+Dajan Ahluwalia: 25%
+Prabhat Jain: 25%
+Charles Phan: 25%
+Gabe Oetken: 25%
+
 JSON Formats: 
 
 User JSON:
