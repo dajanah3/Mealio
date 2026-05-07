@@ -1,6 +1,7 @@
 package com.example.mealio
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.text.InputType
 import android.view.Gravity
 import android.view.View
@@ -24,9 +25,11 @@ class CreateRecipeActivity : AppCompatActivity() {
     private lateinit var btnSubmit: Button
     private lateinit var btnRemoveIngredient: Button
     private lateinit var btnRemoveInstruction: Button
-
+    private lateinit var sp: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
     private var ingredientCount = 1
     private var stepCount = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +47,81 @@ class CreateRecipeActivity : AppCompatActivity() {
         btnRemoveIngredient = findViewById(R.id.btnRemoveIngredient)
         btnRemoveInstruction = findViewById(R.id.btnRemoveInstruction)
 
-        // Cancel
+        sp = this.getSharedPreferences(this.packageName + "_preferences", Context.MODE_PRIVATE)
+        editor = sp.edit()
+
+        // Cancel. If REMEMBER, save the current title, description, ingredients (as a set), and instructions (as a set)
+            // index i is put in ingredients + instructions to prevent set deletion of duplicates
+
+
         btnBack.setOnClickListener {
+            if(sp.getBoolean("REMEMBER", false)) {
+
+                val title = etTitle.text.toString().trim()
+                val description = etDescription.text.toString().trim()
+
+                val ingredients = List(ingredientsContainer.childCount) { i ->
+                    val field = ingredientsContainer.getChildAt(i) as EditText
+                     "$i" + field.text.toString().trim()
+                }.toSet()
+                val instructions = List(instructionsContainer.childCount) {i ->
+                    val field = instructionsContainer.getChildAt(i) as EditText
+                    "$i" + field.text.toString().trim()
+                }.toSet()
+
+                editor.putString("TITLE", title).putString("DESCRIPTION", description).putStringSet("INGREDIENTS", ingredients).putStringSet("INSTRUCTIONS", instructions)
+                    .commit()
+            }
             finish()
+        }
+
+        // If REMEMBER, prepopulate fields with stored values
+            // Remember to snip 1st letter of ingredient/instruction
+        if(sp.getBoolean("REMEMBER", false)) {
+
+            etTitle.setText(sp.getString("TITLE", ""))
+            etDescription.setText(sp.getString("DESCRIPTION", ""))
+
+            // Ingredients
+            val ingredients = sp.getStringSet("INGREDIENTS", mutableSetOf<String>())
+            if(ingredients != null) {
+                for ((idx, ingredient) in ingredients.withIndex()) {
+                    // If not first ingredient
+                    if(idx != 0) {
+                        ingredientCount++
+                        val field = createInputField(
+                            context = this,
+                            hint = "ingredient $ingredientCount",
+                            multiLine = false
+                        )
+                        ingredientsContainer.addView(field)
+                        btnRemoveIngredient.visibility = View.VISIBLE
+                    }
+                    val ingredientField = ingredientsContainer.getChildAt(idx) as? EditText
+                    ingredientField?.setText(ingredient.substring(1))
+                }
+            }
+
+            val instructions = sp.getStringSet("INSTRUCTIONS", mutableSetOf<String>())
+            if(instructions != null) {
+                for ((idx, instruction) in instructions.withIndex()) {
+                    // If not first instruction
+                    if(idx != 0) {
+                        stepCount++
+                        val field = createInputField(
+                            context = this,
+                            hint = "Step $stepCount",
+                            multiLine = true
+                        )
+                        instructionsContainer.addView(field)
+                        btnRemoveInstruction.visibility = View.VISIBLE
+                    }
+                    val instructionField = instructionsContainer.getChildAt(idx) as? EditText
+                    instructionField?.setText(instruction.substring(1))
+                }
+            }
+
+
         }
 
         // Add ingredient
@@ -193,5 +268,7 @@ class CreateRecipeActivity : AppCompatActivity() {
                 MainActivity.mealio!!.save_keyword(keyword, title)
             }
         }
+        editor.remove("TITLE").remove("DESCRIPTION").remove("INGREDIENTS").remove("INSTRUCTIONS")
+            .commit()
     }
 }

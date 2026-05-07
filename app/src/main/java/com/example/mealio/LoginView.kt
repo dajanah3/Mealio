@@ -37,7 +37,7 @@ class LoginView : Fragment(R.layout.activity_login) {
 
                             MainActivity.mealio = appState
 
-//
+//                          Starting HomePage activity moved to Mealio.kt
 //                            val intent = Intent(requireContext(), HomePage::class.java)
 //                            startActivity(intent)
                             //activity?.finish()

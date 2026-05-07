@@ -15,7 +15,6 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.button.MaterialButton
-import kotlinx.coroutines.delay
 import kotlin.concurrent.thread
 
 class HomePage : AppCompatActivity() {
@@ -50,20 +49,39 @@ class HomePage : AppCompatActivity() {
         val welcomeTV : TextView = findViewById<TextView>(R.id.welcome_bar)
         val welcomeSubtitle : TextView = findViewById<TextView>(R.id.welcome_subtitle)
 
+        if (MainActivity.mealio?.user_info == null) {
+            // Login error?
+            Log.w("MainActivity", "Login Error")
+            finish()
+            return
+        }
+
+        // Log user_info just cuz
         Log.w("MainActivity","user_info: ${MainActivity.mealio!!.user_info}")
 
         val username : String = MainActivity.mealio!!.user_info!!["username"] as String
+
         welcomeTV.text = "Welcome back, $username"
         welcomeSubtitle.text = "What's on the menu today?"
 
         // Assign components
+        settingsButton = findViewById<ImageView>(R.id.settings)
         findButton = findViewById<MaterialButton>(R.id.lookup)
         createButton = findViewById<MaterialButton>(R.id.create)
         favedButton = findViewById<MaterialButton>(R.id.favorite)
         createdButton = findViewById<MaterialButton>(R.id.mine)
 
-        // Recipe lookup activity
+        // Settings button (dark mode, sign out?)
+        settingsButton.setOnClickListener {
+            val intent : Intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
 
+        // Recipe lookup activity
+        findButton.setOnClickListener {
+            val intent : Intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         // Recipe creation activity
         createButton.setOnClickListener { view ->
