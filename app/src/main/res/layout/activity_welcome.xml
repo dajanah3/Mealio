@@ -13,6 +13,14 @@
         android:layout_height="0dp"
         android:layout_weight="2" />
 
+    <ImageView
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_logo"
+        android:contentDescription="Mealio logo" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

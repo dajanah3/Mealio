@@ -13,15 +13,30 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:letterSpacing="-0.03"
-            android:text="Mealio"
-            android:textColor="#1C1C1E"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_logo"
+                android:contentDescription="Mealio logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="-0.03"
+                android:text="Mealio"
+                android:textColor="#1C1C1E"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/settings"
