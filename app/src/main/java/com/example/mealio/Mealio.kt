@@ -99,5 +99,29 @@ class Mealio (private val context : Context) {
         }
     }
 
+    fun emailRecipe(recipeName: String, description: String, ingredients: String, instructions: String){
+        val userEmail = user_info?.get("email") as? String ?: ""
+        val body = """
+            Recipe: ${recipeName}
+            Description: ${description}
+            Ingredients: ${ingredients}
+            Instructions: ${instructions}
+        """.trimIndent()
+
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = android.net.Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(userEmail))
+            putExtra(Intent.EXTRA_SUBJECT, "${recipeName} Recipe")
+            putExtra(Intent.EXTRA_TEXT, body)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+
+        try {
+            context.startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(context, "NO EMAIL", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
 }

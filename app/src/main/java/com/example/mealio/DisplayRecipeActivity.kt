@@ -33,7 +33,7 @@ class DisplayRecipeActivity : AppCompatActivity() {
         favorite.setOnClickListener { MainActivity.mealio!!.favorite_recipe(recipe_name.text.toString()) }
 
         val recipe_key = intent.getStringExtra("recipe")
-        val name = recipe_key!!.substringBefore(":")
+        val name = recipe_key!!.substringBefore(":").trim()
         recipe_name.text = name
 
         val db : FirebaseFirestore = MainActivity.mealio!!.get_db()
@@ -41,10 +41,19 @@ class DisplayRecipeActivity : AppCompatActivity() {
         db.collection("recipes").document(recipe_key).get()
             .addOnSuccessListener { doc ->
                 if (doc.exists()) {
-                    description.text = (doc.get("description") as CharSequence?)
-                    ingredients.text = (doc.get("ingredients") as? List<String>)?.joinToString("\n") ?: ""
-                    steps.text = (doc.get("instructions") as? List<String>)?.joinToString("\n") ?: ""
+                    val desc = (doc.get("description") as CharSequence?)
+                    val ingr = (doc.get("ingredients") as? List<String>)?.joinToString("\n") ?: ""
+                    val step = (doc.get("instructions") as? List<String>)?.joinToString("\n") ?: ""
+                    description.text = desc
+                    ingredients.text = ingr
+                    steps.text = step
+
+                    share.setOnClickListener {
+                        MainActivity.mealio?.emailRecipe(name, desc.toString(), ingr, step)
+                    }
                 }
+
+
             }
     }
 }
