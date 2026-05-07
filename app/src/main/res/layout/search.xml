@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#FFFFFF"
+        android:padding="13.5dp"
+        >
+
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#1C1C1E"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:letterSpacing="-0.03"
+            android:text="Mealio"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/home_page_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_bar"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/keyword_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_input_field"
+            android:hint="Enter keyword to search by"
+            android:padding="14dp"
+            android:textColor="#1C1C1E"
+            android:textColorHint="#8E8E93"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#F2F2F7"
+        android:layout_below="@id/top_bar"
+
+        />
+
+</RelativeLayout>
+
